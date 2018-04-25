@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+
+<hibernate-configuration>
+    <session-factory>
+    
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <property name="connection.url">jdbc:mysql://127.0.0.1/material_records_db?autoReconnect=true</property>	<!-- TODO EDIT -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+		<property name="show_sql">false</property>
+
+		<property name="connection.pool_size">5</property>
+        <property name="hibernate.jdbc.batch_size">10</property>
+		
+		
+		<!-- Allows creation of table if not exist -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+		<!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
+		
+		<!-- Maps classes with the @Entity annotations -->
+		<mapping class="mm.webapp.model.Admin"/>
+		<mapping class="mm.webapp.model.MUser"/>
+		<mapping class="mm.webapp.model.Accountgroup"/>
+		<mapping class="mm.webapp.model.Account"/>
+		<mapping class="mm.webapp.model.Itemgroup"/>
+		<mapping class="mm.webapp.model.Item"/>
+		<mapping class="mm.webapp.model.Materialcentre"/>
+		<mapping class="mm.webapp.model.Munit"/>
+    </session-factory>
+</hibernate-configuration>

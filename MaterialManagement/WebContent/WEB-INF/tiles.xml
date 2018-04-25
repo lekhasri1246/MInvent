@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">  
+       
+<tiles-definitions>  
+    
+    
+    <!-- Base definition -->
+    <definition name="base.definition" template="WEB-INF/view/tiles/layout.jsp">  
+        <put-attribute name="title" value="" />  
+        <put-attribute name="header" value="/WEB-INF/view/tiles/header.jsp" />  
+          
+        <put-attribute name="body" value="" />  
+        <put-attribute name="footer" value="/WEB-INF/view/tiles/footer.jsp" />  
+    </definition>
+    
+    
+	
+	<!-- Pages handled by FrontController -->
+    <definition name="home" extends="base.definition">  
+        <put-attribute name="title" value="Home Page" />  
+        <put-attribute name="body" value="/WEB-INF/view/home.jsp" />  
+    </definition> 
+    
+    <definition name="login" extends="base.definition">  
+        <put-attribute name="title" value="Login" />  
+        <put-attribute name="body" value="/WEB-INF/view/login.jsp" />  
+    </definition>  
+    
+    <definition name="backup_restore" extends="base.definition">  
+        <put-attribute name="title" value="Backup/Restore" />  
+        <put-attribute name="body" value="/WEB-INF/view/backup_restore.jsp" />  
+    </definition>
+    
+    <definition name="settings" extends="base.definition">  
+        <put-attribute name="title" value="Settings" />  
+        <put-attribute name="body" value="/WEB-INF/view/settings.jsp" />  
+    </definition>
+    
+	
+	<!-- Pages handled by UserController -->
+ 	<definition name="user_list" extends="base.definition">  
+        <put-attribute name="title" value="List of all Traders" />  
+        <put-attribute name="body" value="/WEB-INF/view/user_list.jsp" />  
+    </definition> 
+    
+	<definition name="add_user" extends="base.definition">  
+        <put-attribute name="title" value="Add User" />  
+        <put-attribute name="body" value="/WEB-INF/view/add_user.jsp" />  
+    </definition> 
+ 
+    <definition name="user_dashboard" extends="base.definition">  
+        <put-attribute name="title" value="User Dashboard" />  
+        <put-attribute name="body" value="/WEB-INF/view/user_dashboard.jsp" />  
+    </definition>    
+  
+    <definition name="edit_user" extends="base.definition">  
+        <put-attribute name="title" value="Edit User" />  
+        <put-attribute name="body" value="/WEB-INF/view/edit_user.jsp" />  
+    </definition> 
+	
+	<definition name="manage_user" extends="base.definition">  
+        <put-attribute name="title" value="Manage User" />  
+        <put-attribute name="body" value="/WEB-INF/view/manage_user.jsp" />  
+    </definition> 
+	    
+ 	<definition name="add_data" extends="base.definition">  
+        <put-attribute name="title" value="Add Data" />  
+        <put-attribute name="body" value="/WEB-INF/view/add_data.jsp" />  
+    </definition> 
+    
+ 	<definition name="add_data_error" extends="base.definition">  
+        <put-attribute name="title" value="Error" />  
+        <put-attribute name="body" value="/WEB-INF/view/add_data_error.jsp" />  
+    </definition> 
+    
+ 	<definition name="pay_out" extends="base.definition">  
+        <put-attribute name="title" value="Pay-Out" />  
+        <put-attribute name="body" value="/WEB-INF/view/pay_out.jsp" />  
+    </definition> 
+    
+ 	<definition name="pay_out_specific" extends="base.definition">  
+        <put-attribute name="title" value="Pay-Out" />  
+        <put-attribute name="body" value="/WEB-INF/view/pay_out_specific.jsp" />  
+    </definition> 
+	
+	<!-- Pages handled by AccountController -->
+	<definition name="add_AccountGroup" extends="base.definition">  
+        <put-attribute name="title" value="Add Account Group" />  
+        <put-attribute name="body" value="/WEB-INF/view/add_AccountGroup.jsp" />  
+    </definition>
+    
+    <definition name="add_Account" extends="base.definition">  
+        <put-attribute name="title" value="Add Account" />  
+        <put-attribute name="body" value="/WEB-INF/view/add_Account.jsp" />  
+    </definition> 
+     
+     <definition name="account_list" extends="base.definition">  
+        <put-attribute name="title" value="account_list" />  
+        <put-attribute name="body" value="/WEB-INF/view/account_list.jsp" />  
+    </definition>
+    
+        <definition name="modify_account" extends="base.definition">  
+        <put-attribute name="title" value="Modify Account" />  
+        <put-attribute name="body" value="/WEB-INF/view/modify_account.jsp" />  
+    </definition> 
+    <definition name="modify_accountgroup" extends="base.definition">  
+        <put-attribute name="title" value="Modify Account Group" />  
+        <put-attribute name="body" value="/WEB-INF/view/modify_accountgroup.jsp" />  
+    </definition> 
+    <definition name="accountgroup_list" extends="base.definition">  
+        <put-attribute name="title" value="accountgroup_list" />  
+        <put-attribute name="body" value="/WEB-INF/view/accountgroup_list.jsp" />  
+    </definition>
+  
+ 
+	<!-- Pages handled by ItemController -->
+    <definition name="item_list" extends="base.definition">  
+        <put-attribute name="title" value="List of all Items" />  
+        <put-attribute name="body" value="/WEB-INF/view/item_list.jsp" />  
+    </definition>
+    
+ 	<definition name="add_item" extends="base.definition">  
+        <put-attribute name="title" value="Add Item" />  
+        <put-attribute name="body" value="/WEB-INF/view/add_item.jsp" />  
+    </definition>
+    
+    	<definition name="modify_item" extends="base.definition">  
+        <put-attribute name="title" value="Modify Item" />  
+        <put-attribute name="body" value="/WEB-INF/view/modify_item.jsp" />  
+    </definition>
+ 
+    
+  	<definition name="add_ItemGroup" extends="base.definition">  
+        <put-attribute name="title" value="Add Item Group" />  
+        <put-attribute name="body" value="/WEB-INF/view/add_ItemGroup.jsp" />  
+    </definition>
+     
+    <definition name="modify_itemgroup" extends="base.definition">  
+        <put-attribute name="title" value="Modify Item Group" />  
+        <put-attribute name="body" value="/WEB-INF/view/modify_itemgroup.jsp" />  
+    </definition>
+    
+    <definition name="itemgroup_list" extends="base.definition">  
+        <put-attribute name="title" value="Item Group List" />  
+        <put-attribute name="body" value="/WEB-INF/view/itemgroup_list.jsp" />  
+    </definition>
+ 
+  	<definition name="add_materialcentre" extends="base.definition">  
+        <put-attribute name="title" value="Add Material Centre" />  
+        <put-attribute name="body" value="/WEB-INF/view/add_materialcentre.jsp" />  
+    </definition>
+ <definition name="modify_materialcentre" extends="base.definition">  
+        <put-attribute name="title" value="Modify Material Center" />  
+        <put-attribute name="body" value="/WEB-INF/view/modify_materialcentre.jsp" />  
+    </definition>
+    
+    <definition name="materialcentre_list" extends="base.definition">  
+        <put-attribute name="title" value="Material Centre List" />  
+        <put-attribute name="body" value="/WEB-INF/view/materialcentre_list.jsp" />  
+    </definition>
+ 
+    <definition name="add_munit" extends="base.definition">  
+        <put-attribute name="title" value="Add Unit" />  
+        <put-attribute name="body" value="/WEB-INF/view/add_munit.jsp" />  
+    </definition>
+ <definition name="modify_munit" extends="base.definition">  
+        <put-attribute name="title" value="Modify Unit" />  
+        <put-attribute name="body" value="/WEB-INF/view/modify_munit.jsp" />  
+    </definition>
+    
+    <definition name="munit_list" extends="base.definition">  
+        <put-attribute name="title" value="Unit List" />  
+        <put-attribute name="body" value="/WEB-INF/view/munit_list.jsp" />  
+    </definition>
+ 
+ 
+    
+    
+    <!-- Pages handled by PrintController -->
+    <definition name="print_data" extends="base.definition">  
+        <put-attribute name="title" value="Print Data" />  
+        <put-attribute name="body" value="/WEB-INF/view/print_data.jsp" />  
+    </definition> 
+    
+    <!-- Pages handled by DatabaseReadTest and PrintTest -->
+    <definition name="test" extends="base.definition">  
+        <put-attribute name="title" value="Test" />  
+        <put-attribute name="body" value="/WEB-INF/view/test.jsp" />  
+    </definition> 
+    
+    
+     <!-- Custom / Testing / On Hold -->
+    
+</tiles-definitions>  

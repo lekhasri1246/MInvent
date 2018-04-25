@@ -1,0 +1,86 @@
+body
+{
+	background-color: lightblue;
+}
+
+.header 
+{
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 99%;
+  height: 10%;
+  position: relative;
+  margin: 0.25%;;
+  padding: 0.25%;;
+  overflow: hidden;
+  border: none;
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  background: grey;
+}
+
+.navbar
+{
+  /* See menu.css for more options*/
+
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  float: left;
+  width: 18%;
+  height: 80%;
+  position: relative;
+  /*
+  top: 0%;
+  margin: 0.25%;;
+  padding: 0.25%;;
+  overflow: auto;
+  border: none;
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  background: grey;
+  */
+}
+
+.content
+{
+  font: 100% "Trebuchet MS", sans-serif;
+  text-align: center;
+	
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  float: right;
+  width: 80%;
+  /*height: 80%;*/
+  position: relative;
+  top: 0%;
+  margin: 0.25%;
+  padding: 0.25%;
+  overflow: auto;
+  border: none;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.footer
+{
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 99%;
+  height: 5%;
+  position: relative;
+  top: 0.5%;
+  margin: 0.25%;
+  padding: 0.25%;
+  overflow: hidden;
+  border: none;
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  background: grey;
+}

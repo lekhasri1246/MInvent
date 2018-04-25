@@ -1,0 +1,394 @@
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<div id="accordion">
+<p style="text-align:left">User Details</p>
+<div>
+<table class="center smalltext colored leftaligntext">
+<tr>
+	<td width="166">Name:</td>			
+	<td width="166"><c:out value="${user.name}"/></td>
+</tr>
+<tr>
+	<td width="150">Phone Number:</td>
+	<td width="150"><c:out value="${user.phone}"/></td>
+</tr>
+<tr>
+	<td width="150">Incentive:</td>
+	<td width="150"><c:out value="${user.commission}"/></td>
+</tr>
+<tr>
+	<td width="150">Address:</td>
+	<td width="750"><c:out value="${user.address}"/></td>	
+<tr>
+</table>
+<br>
+<table class="center smalltext colored leftaligntext">
+<tr>	
+<td width="150">Paid:</td>
+<td width="150"><c:out value="${user.amount}"/></td>
+<td width="150"></td>
+<td width="150"></td>
+<td width="150">Balance:</td>
+<td width="150"><c:out value="${user.balance}"/></td>
+</tr>
+</table>
+<br>
+<a class="btn" href="pay_out_specific?userId=${userId}">Pay User</a>
+<!-- <a class="btn" href="print_data?userId=${userId}">Print Data</a> -->
+<a class="btn" href="print_data?userId=${userId}&userIp=<c:out value="${credentials.IP}"/>">Print Data</a>  
+<a class="btn" href="edit_user?userId=${userId}">Edit User</a>
+<a class="btn" onClick='deleteUser()'>Delete User</a>
+<br><br>
+</div>
+</div>
+
+<br>
+
+
+
+
+<!-- Tabs displaying various tables -->
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Sent Items</a></li>
+		<li><a href="#tabs-2">Received Items</a></li>
+		<li><a href="#tabs-3">Challan Details</a></li>
+		<li><a href="#tabs-4">Warp Details</a></li>
+		<li><a href="#tabs-5">Payment Details</a></li>
+		<li><a href="#tabs-6">Summary</a></li>
+	</ul>
+	
+	
+	<div id="tabs-1">
+	
+	<!-- Content of Sent Items tab here -->
+	<table border="1" width=100% class="center fullwidth" id="dtable1">
+	<thead>
+	<tr>
+	<td width="50">User Id</td>
+	<td width="50">Challan Number</td>	
+	<td width="50">Warp Number</td>	
+	<td width="200">Product Description</td>	
+	<td width="50">Quantity</td>
+	<td width="50">Cost</td>
+	<td width="100">Sent Date</td>
+	<td width="50">Weight</td>
+	<td width="400">Comment</td>
+	<td width="50">Delete</td>
+	</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="s" items="${sentItems}">
+	<tr>
+	<td><c:out value="${s.user_id}"/></td>
+	<td><c:out value="${s.challan_no}"/></td>
+	<td><c:out value="${s.warp_no}"/></td>
+	<td><c:out value="${s.product_desc}"/></td>
+	<td><c:out value="${s.quantity}"/></td>
+	<td><c:out value="${s.cost}"/></td>
+	<td><c:out value="${s.sent_date}"/></td>
+	<td><c:out value="${s.weight}"/></td>
+	<td><c:out value="${s.comment}"/></td>
+	
+	<td><button onclick='deleteSentItemsRow(${s.id})'>Delete</button></td>
+	
+	</tr>
+	</c:forEach>
+	</tbody>
+	</table>
+	<br>
+	<table style="border: 1px solid black;" class="center">
+	<tr><td width="300px">Total cost of items given:</td><td width="200px">Rs. <c:out value="${SItotalCost}"/></td></tr>
+	<tr><td>Total quantity of items given:</td><td><c:out value="${SItotalQuantity}"/> Units</td></tr>
+	<tr><td>Total weight of items given:</td><td><c:out value="${SItotalWeight}"/> Kgs</td></tr>
+	</table>
+	</div>
+	
+	
+	<div id="tabs-2">
+	<!-- Content of Received Items tab here -->
+	<table border="1" width=100% class="center fullwidth" id="dtable2">
+	<thead>
+	<tr>
+	<td width="50">User Id</td>
+	<td width="50">Challan Number</td>	
+	<td width="50">Warp Number</td>	
+	<td width="200">Product Description</td>	
+	<td width="50">Quantity</td>
+	<td width="50">Cost</td>
+	<td width="100">Received Date</td>
+	<td width="50">Weight</td>
+	<td width="400">Comment</td>
+	<td width="50">Delete</td>
+	</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="r" items="${receivedItems}">
+	<tr>
+	<td><c:out value="${r.user_id}"/></td>
+	<td><c:out value="${r.challan_no}"/></td>
+	<td><c:out value="${r.warp_no}"/></td>
+	<td><c:out value="${r.product_desc}"/></td>
+	<td><c:out value="${r.quantity}"/></td>
+	<td><c:out value="${r.cost}"/></td>
+	<td><c:out value="${r.received_date}"/></td>
+	<td><c:out value="${r.weight}"/></td>
+	<td><c:out value="${r.comment}"/></td>
+	<td><button onclick='deleteReceivedItemsRow(${r.id})'>Delete</button></td>
+	</tr>
+	</c:forEach>
+	</tbody>
+	</table>
+	<br>
+	<table style="border: 1px solid black;" class="center">
+	<tr><td width="300px">Total cost of items received:</td><td width="200px">Rs. <c:out value="${RItotalCost}"/></td></tr>
+	<tr><td>Total quantity of items received:</td><td><c:out value="${RItotalQuantity}"/> Units</td></tr>
+	<tr><td>Total weight of items received:</td><td><c:out value="${RItotalWeight}"/> Kgs</td></tr>
+	</table>
+	</div>
+	
+	
+	<div id="tabs-3">
+	<!-- Content of Challan Details tab here -->
+	<table border="1" width=100% class="center fullwidth" id="dtable3">
+	<thead>
+	<tr>
+	<td width="50">User Id</td>
+	<td width="50">Challan Number</td>	
+	<td width="200">Product Description</td>	
+	<td width="50">Received Quantity</td>
+	<td width="50">Sent Quantity</td>
+	<td width="100">Received Date</td>
+	<td width="100">Sent Date</td>
+	<td width="400">Comment</td>
+	<td width="50">Delete</td>
+	</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="c" items="${challanList}">
+	<tr>
+	<td><c:out value="${c.user_id}"/></td>
+	<td><c:out value="${c.challan_no}"/></td>
+	<td><c:out value="${c.product_desc}"/></td>
+	<td><c:out value="${c.ritems}"/></td>
+	<td><c:out value="${c.sitems}"/></td>
+	<td><c:out value="${c.received_date}"/></td>
+	<td><c:out value="${c.sent_date}"/></td>
+	<td><c:out value="${c.comment}"/></td>
+	<td><button onclick='deleteChallanDetailsRow(${c.id})'>Delete</button></td>
+	</tr>
+	</c:forEach>
+	</tbody>
+	</table>
+	</div>
+	
+	
+	<div id="tabs-4">
+	<!-- Content of Warp Details tab here -->
+	<table border="1" width=100% class="center fullwidth" id="dtable4">
+	<thead>
+	<tr>
+	<td width="100">User Id</td>
+	<td width="100">Warp Number</td>		
+	<td width="100">Received Quantity</td>
+	<td width="100">Sent Quantity</td>
+	<td width="100">Balance Quantity</td>
+	<td width="100">Sent Date</td>
+	<td width="400">Comment</td>
+	<td width="50">Delete</td>
+	</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="w" items="${warpList}">
+	<tr>
+	<td><c:out value="${w.user_id}"/></td>
+	<td><c:out value="${w.warp_no}"/></td>	
+	<td><c:out value="${w.ritems}"/></td>	
+	<td><c:out value="${w.sitems}"/></td>
+	<td><c:out value="${w.bitems}"/></td>
+	<td><c:out value="${w.sent_date}"/></td>
+	<td><c:out value="${w.comment}"/></td>
+	<td><button onclick='deleteWarpDetailsRow(${w.id})'>Delete</button></td>
+	</tr>
+	</c:forEach>
+	</tbody>
+	</table>
+	</div>
+	
+	
+	<div id="tabs-5">
+	<!-- Content of Payment Details tab here -->
+	<table border="1" width=100% class="center fullwidth" id="dtable5">
+	<thead>
+	<tr>
+	<td width="100">User Id</td>
+	<td width="100">Amount</td>		
+	<td width="100">Date</td>
+	<td width="100">Transaction Type</td>
+	<td width="100">Description</td>
+	<!-- Karoms3  -->
+	<td width="50">Delete</td>
+	<!-- Karoms3 -->
+	</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="a" items="${accountList}">
+	<tr>
+	<td><c:out value="${a.user_id}"/></td>
+	<td><c:out value="${a.amount}"/></td>	
+	<td><c:out value="${a.add_date}"/></td>	
+	<td><c:out value="${a.t_type}"/></td>
+	<td><c:out value="${a.description} ${a.comment_a}"/></td>
+	<!--Karoms3  -->
+	<td><button onclick='deletePaymentDetailsRow(${a.id})'>Delete</button></td>
+	<!--Karoms3  -->
+	</tr>
+	</c:forEach>
+	</tbody>
+	</table>
+	</div>
+	
+	
+	<div id="tabs-6">
+	<!-- Content of Summary tab here -->
+	<table border="1"  style="border-collapse: collapse;" class="center fullwidth largetext">
+	<tr>
+	<th></th>
+	<th colspan=2>Cost (Rs.)</th>
+	<th colspan=2>Quantity (Units)</th>
+	<th colspan=2>Weight (Kgs.)</th>
+	</tr>
+	<tr>
+	<th width=50px></th>
+	<th width=100px>Paid Amount</th>
+	<th width=100px>Wages Payable</th>
+	<th width=100px>Sent Item</th>
+	<th width=100px>Received Item</th>
+	<th width=100px>Sent Item</th>
+	<th width=100px>Received Item</th>
+	</tr>
+	<thead>
+	</thead>
+	<tbody>
+	<tr>
+	<td>Total</td>
+	<!-- <td><c:out value="${SItotalCost}"/></td> -->
+	<td><c:out value="${user.amount}"/></td>
+	<td><c:out value="${RItotalCost}"/></td>
+	<td><c:out value="${SItotalQuantity}"/></td>
+	<td><c:out value="${RItotalQuantity}"/></td>
+	<td><c:out value="${SItotalWeight}"/></td>
+	<td><c:out value="${RItotalWeight}"/></td>
+	</tr>
+	<tr>
+	<td>Balance</td>
+	<!-- <td colspan=2><c:set var="costDifference" value="${SItotalCost - RItotalCost}"/> <c:out value="${costDifference}"/></td> -->
+	<td colspan=2> <c:set var="costDifference" value="${RItotalCost-user.amount}"/> <c:out value="${costDifference}"/></td>
+	<td colspan=2><c:set var="quantityDifference" value="${SItotalQuantity - RItotalQuantity}"/> <c:out value="${quantityDifference}"/></td>
+	<td colspan=2><c:set var="WeightDifference" value="${SItotalWeight - RItotalWeight}"/> <fmt:formatNumber type = "number" maxFractionDigits = "2" value = "${WeightDifference}" /></td>
+	</tr>
+	</tbody>
+	</table>
+	</div>	
+</div>
+
+
+
+
+
+
+<head>
+<!-- Setting root of web application so that we can reference URL's relatively -->
+<spring:url value="/" var="root" />
+
+<script>
+
+
+function deleteSentItemsRow(id)
+{
+	var url = "http://localhost:8080<c:out value="${root}"/>deleteSentItemsRow?id=" + id + "&userId=<c:out value="${user.id}"/>";
+	var password = "<c:out value="${credentials.password}"/>";
+	var x = prompt("Enter password: ","");
+	if(x == null)
+		return;
+	if(x.toLowerCase() == password)
+		window.open(url,"_self");
+	else
+		window.alert("Wrong password");
+	return;
+}
+function deleteReceivedItemsRow(id)
+{
+	var url = "http://localhost:8080<c:out value="${root}"/>deleteReceivedItemsRow?id=" + id + "&userId=<c:out value="${user.id}"/>";
+	var password = "<c:out value="${credentials.password}"/>";
+	var x = prompt("Enter password: ","");
+	if(x == null)
+		return;
+	if(x.toLowerCase() == password)
+		window.open(url,"_self");
+	else
+		window.alert("Wrong password");
+	return;
+}
+function deleteChallanDetailsRow(id)
+{
+	var url = "http://localhost:8080<c:out value="${root}"/>deleteChallanDetailsRow?id=" + id + "&userId=<c:out value="${user.id}"/>";
+	var password = "<c:out value="${credentials.password}"/>";
+	var x = prompt("Enter password: ","");
+	if(x == null)
+		return;
+	if(x.toLowerCase() == password)
+		window.open(url,"_self");
+	else
+		window.alert("Wrong password");
+	return;
+}
+function deleteWarpDetailsRow(id)
+{
+	var url = "http://localhost:8080<c:out value="${root}"/>deleteWarpDetailsRow?id=" + id + "&userId=<c:out value="${user.id}"/>";
+	var password = "<c:out value="${credentials.password}"/>";
+	var x = prompt("Enter password: ","");
+	if(x == null)
+		return;
+	if(x.toLowerCase() == password)
+		window.open(url,"_self");
+	else
+		window.alert("Wrong password");
+	return;
+}
+//Karoms3
+function deletePaymentDetailsRow(id)
+{
+	var url = "http://localhost:8080<c:out value="${root}"/>deletePaymentDetailsRow?id=" + id + "&userId=<c:out value="${user.id}"/>";
+	var password = "<c:out value="${credentials.password}"/>";
+	var x = prompt("Enter password: ","");
+	if(x == null)
+		return;
+	if(x.toLowerCase() == password)
+		window.open(url,"_self");
+	else
+		window.alert("Wrong password");
+	return;
+}
+//Karoms3
+function deleteUser()
+{
+	console.log("At deleteUser");
+	var url = "http://localhost:8080<c:out value="${root}"/>delete_user?userId=${userId}";
+	var password = "<c:out value="${credentials.password}"/>";
+	var x = prompt("Enter password: ","");
+	if(x == null)
+		return;
+	if(x.toLowerCase() == password)
+		window.open(url,"_self");
+	else
+		window.alert("Wrong password");
+}
+
+
+</script>
+</head>
